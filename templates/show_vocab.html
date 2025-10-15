@@ -1,0 +1,44 @@
+{% include "main.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Vokabeln anzeigen</title>
+</head>
+<body>
+    <h1>Meine Vokabeln</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Ausgangswort</th>
+                <th>Zielwort</th>
+                <th>Gruppe</th>
+                <th>Gelernt?</th>
+                <th>Hinzugefügt am</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vocab in vocabs %}
+                <tr>
+                    <td>{{ vocab.source_word }}</td>
+                    <td>{{ vocab.target_word }}</td>
+                    <td>{{ vocab.group }}</td>
+                    <td>
+                        <form class="toggle_learned" method="post" action="{% url 'toggle_learned' vocab.id %}">
+                            {% csrf_token %}
+                            <button type="submit" style="background:none;border:none;cursor:pointer;">
+                                {% if vocab.is_learned %}✅{% else %}❌{% endif %}
+                            </button>
+                        </form>
+                    </td>
+                    <td>{{ vocab.created_at|date:"d.m.Y H:i" }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="5">Keine Vokabeln gefunden.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

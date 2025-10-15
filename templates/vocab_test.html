@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Vokabeltest: {{ group.name }}</h1>
+
+<p id="timer" style="font-weight:bold; font-size:18px;">Zeit: 05:00</p>
+
+<form id="testForm" method="post" class="form">
+    {% csrf_token %}
+    {% for vocab in questions %}
+        <div class="question">
+            <label>{{ vocab.source_word }}</label><br>
+            <input type="text" name="vocab_{{ vocab.id }}" required><br><br>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn">Test abschließen</button>
+</form>
+
+<script>
+// Countdown: 5 Minuten (300 Sekunden)
+let timeLeft = 300;
+const timerEl = document.getElementById('timer');
+const form = document.getElementById('testForm');
+
+const countdown = setInterval(() => {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    timerEl.textContent = `Zeit: ${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    timeLeft--;
+
+    if (timeLeft < 0) {
+        clearInterval(countdown);
+        alert("Zeit ist abgelaufen! Test wird automatisch abgeschickt.");
+        form.submit();
+    }
+}, 1000);
+</script>
+
+{% endblock %}
