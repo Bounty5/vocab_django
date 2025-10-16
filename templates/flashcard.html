@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Flashcards: {{ group.name }}</h1>
+
+<div id="flashcard-container" style="text-align:center;">
+  <div id="card" style="background:#1e1e1e;color:#00dc84;padding:40px;border-radius:15px;width:300px;margin:20px auto;font-size:26px;">
+    <p id="word"></p>
+  </div>
+  <button id="nextBtn" class="btn">Karte umdrehen / nächste</button>
+</div>
+
+<script>
+const vocabs = JSON.parse('{{ vocabs|safe }}');
+console.log(vocabs);
+
+let index = 0;
+let showFront = true;
+const wordEl = document.getElementById('word');
+const nextBtn = document.getElementById('nextBtn');
+
+function updateCard() {
+  if (vocabs.length === 0) {
+    wordEl.textContent = "Keine Vokabeln in dieser Gruppe.";
+    nextBtn.disabled = true;
+    return;
+  }
+
+  const vocab = vocabs[index];
+  wordEl.textContent = showFront ? vocab.source_word : vocab.target_word;
+}
+
+nextBtn.addEventListener('click', () => {
+  if (showFront) {
+    showFront = false;
+  } else {
+    index = (index + 1) % vocabs.length;
+    showFront = true;
+  }
+  updateCard();
+});
+
+updateCard();
+</script>
+{% endblock %}

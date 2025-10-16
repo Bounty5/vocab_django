@@ -18,4 +18,5 @@ urlpatterns = [
     path("groups/<int:group_id>/delete_group/", views.delete_group, name="delete_group"),
     path("groups/vocab/<int:vocab_id>/delete/", views.delete_vocab, name="delete_vocab"),
     path("groups/<int:group_id>/test/", views.vocab_test, name="vocab_test"),
+    path("groups/<int:group_id>/flash_card/", views.vocab_flashcard, name="flash_card")
 ]

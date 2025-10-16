@@ -4,6 +4,7 @@ from .models import Vocab, Group
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 import random
+import json
 # Create your views here.
 def add(request):
     if request.method == "POST":
@@ -165,3 +166,10 @@ def vocab_test(request, group_id):
         "group": group,
         "questions": questions
     })
+
+@login_required
+def vocab_flashcard(request, group_id):
+    group = get_object_or_404(Group, id=group_id, user=request.user)
+    vocabs = list(group.vocabs.values("source_word", "target_word"))
+    vocabs_json = json.dumps(vocabs)  # <-- sorgt für korrektes JSON
+    return render(request, "flashcard.html", {"group": group, "vocabs": vocabs_json})
