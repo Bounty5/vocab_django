@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Registrieren</h1>
+
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
+
+<form method="post" class="form">
+    {% csrf_token %}
+    <label>Username:</label>
+    <input type="text" name="username" required>
+    
+    <label>Passwort:</label>
+    <input type="password" name="password" required>
+    
+    <label>Passwort wiederholen:</label>
+    <input type="password" name="password2" required>
+    
+    <button type="submit">Registrieren</button>
+</form>
+
+<p><a href="{% url 'login' %}">Login</a></p>
+{% endblock %}

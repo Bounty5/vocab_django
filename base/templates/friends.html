@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Freundes Liste</h1>
+<h2>Freunde</h2>
+
+<ul>
+
+{% for friend in friends %}
+    <li>{{ friend.username }}</li>
+{% empty %}
+    <li>Keine Freunde Vorhanden</li>
+{% endfor %}
+
+</ul>
+
+<h2>Erhaltene Freundschaftsanfragen:</h2>
+<ul>
+{% for req in recieved %}
+    <li>
+        {{ req.from_user.username }} <br>
+        <a class="highlight" href="{% url "accept_friend_request" req.id %}">Anfrage Anehmen</a> <br> <br>
+        <a class="highlight" href="{% url "reject_friend_request" req.id %}">Anfrage Ablehnen</a>
+    </li>
+{% empty %}
+    <li>Keine Anfragen erhalten</li>
+{% endfor %}
+</ul>
+
+<h2>Gesendete Anfragen</h2>
+<ul>
+    {% for req in sent %}
+    <li>
+        {{req.to_user.username}} - {{ req.status }}
+    </li>
+    {% empty %}
+    <li>
+        Keine Anfragen gesendet
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url "find_friends" %}">Anfragen</a>
+{% endblock%}

@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Vokabel zu "{{ group.name }}" hinzufügen</h1>
+<a href="{% url 'group_detail' group.id %}">⬅</a>
+<form method="post" class="form">
+    {% csrf_token %}
+    <label>Ausgangswort:</label><br>
+    <input type="text" name="source_word" required><br><br>
+    <label>Zielwort:</label><br>
+    <input type="text" name="target_word"required><br><br>
+    <button type="submit" name="action" value="save">Speichern</button>
+    <button type="submit" name="action" value="add_more">Speichern &amp; Weitere hinzufügen</button>
+</form>
+{% endblock %}

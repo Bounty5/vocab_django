@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>🔍 Freunde finden</h1>
+
+<ul>
+  {% for user in users %}
+    <li>
+      {{ user.username }} <br>
+      <a class="highlight" href="{% url 'send_friend_request' user.username %}">➕ Freund hinzufügen</a>
+    </li>
+  {% empty %}
+    <li>Keine passenden Nutzer gefunden</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'friends_list' %}">← Zurück zu meinen Anfragen</a>
+{% endblock %}

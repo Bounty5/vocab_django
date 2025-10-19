@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="centered-form">
+  <h2>Vokabel „{{ vocab.source_word }} ➞ {{ vocab.target_word }}“ wirklich löschen?</h2>
+  <p>Diese Aktion kann nicht rückgängig gemacht werden.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Ja, löschen</button>
+    <a href="{% url 'group_detail' vocab.group.id %}" class="btn btn-secondary">Abbrechen</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Ergebnis: {{ group.name }}</h1>
+<p>Punkte: {{ score }}/{{ total }}</p>
+
+<table>
+    <tr>
+        <th>Ausgangswort</th>
+        <th>Deine Antwort</th>
+        <th>Richtig?</th>
+        <th>Richtige Lösung</th>
+    </tr>
+    {% for r in results %}
+    <tr>
+        <td>{{ r.source }}</td>
+        <td>{{ r.answer }}</td>
+        <td>{% if r.correct %}✅{% else %}❌{% endif %}</td>
+        <td>{{ r.target }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'group_detail' group.id %}" class="btn">Zurück zur Gruppe</a>
+{% endblock %}

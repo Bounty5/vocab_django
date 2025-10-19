@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Gruppe: {{ group.name }}</h1>
+<a href="{% url 'group_list' %}">⬅</a> <br> <br>
+<a class="add" href="{% url 'add_vocab_to_group' group.id %}">+</a>
+<table border="1">
+  <tr>
+    <th>{{ group.source_language}}</th>
+    <th>{{ group.target_language}}</th>
+    <th>Gelernt?</th>
+    <th>Löschen</th>
+  </tr>
+  {% for vocab in vocabs %}
+  <tr>
+    <td>{{ vocab.source_word }}</td>
+    <td>{{ vocab.target_word }}</td>
+    <td>
+        <form class="toggle_learned" method="post" action="{% url 'toggle_learned_vocab_in_group' vocab.id %}">
+          {% csrf_token %}
+         <button type="submit" style="background:none;border:none;cursor:pointer;">
+            {% if vocab.is_learned %}✅{% else %}❌{% endif %}
+          </button>
+        </form>
+    </td>
+    <td>
+      <form method="get" action="{% url 'delete_vocab' vocab.id %}" class="delete-form">
+        <button type="submit" class="btn-delete" aria-label="Vokabel löschen">✖</button>
+      </form>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Keine Vokabeln in dieser Gruppe.</td></tr>
+  {% endfor %}
+</table>
+<a href="{% url 'vocab_test' group.id %}" class="btn">📝 Vokabeltest starten</a>
+<a href="{% url 'flash_card' group.id %}" class="btn">🃏 Flashcards starten</a>
+{% endblock %}

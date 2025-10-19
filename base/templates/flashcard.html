@@ -1,0 +1,81 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Flashcards: {{ group.name }}</h1>
+
+<div id="flashcard-container" style="text-align:center;">
+  <div id="card" style="background:#1e1e1e;color:#00dc84;padding:40px;border-radius:15px;width:300px;margin:20px auto;font-size:26px;">
+    <p id="word"></p>
+  </div>
+  
+  <div id="action-buttons" style="margin-top:20px; display:none;">
+    <button id="correctBtn" class="btn">✅ Konnte ich</button>
+    <button id="wrongBtn" class="btn">❌ Konnte ich nicht</button>
+  </div>
+
+  <button id="nextBtn" class="btn">Karte umdrehen / nächste</button>
+</div>
+
+<script>
+let vocabs = JSON.parse('{{ vocabs|safe }}');
+console.log(vocabs);
+
+let index = 0;
+let showFront = true;
+
+const wordEl = document.getElementById('word');
+const nextBtn = document.getElementById('nextBtn');
+const actionButtons = document.getElementById('action-buttons');
+const correctBtn = document.getElementById('correctBtn');
+const wrongBtn = document.getElementById('wrongBtn');
+
+function updateCard() {
+  if (vocabs.length === 0) {
+    wordEl.textContent = "✅ Fertig!";
+    nextBtn.disabled = true;
+    actionButtons.style.display = "none";
+
+    setTimeout(() => {
+      window.location.href = "{% url 'group_detail' group.id %}";
+    }, 2000);
+    return;
+  }
+
+  if (showFront) {
+    wordEl.textContent = vocabs[index].source_word;
+    nextBtn.style.display = "inline-block";
+    actionButtons.style.display = "none";
+  } else {
+    wordEl.textContent = vocabs[index].target_word;
+    nextBtn.style.display = "none";
+    actionButtons.style.display = "inline-block";
+  }
+}
+
+// Button „Karte umdrehen / nächste“
+nextBtn.addEventListener('click', () => {
+  showFront = false;
+  updateCard();
+});
+
+// Button „Konnte ich“
+correctBtn.addEventListener('click', () => {
+  vocabs.splice(index, 1); // Vokabel entfernen
+  if (index >= vocabs.length) index = 0;
+  showFront = true;
+  updateCard();
+});
+
+// Button „Konnte ich nicht“
+wrongBtn.addEventListener('click', () => {
+  let vocab = vocabs.splice(index, 1)[0]; // entfernen
+  vocabs.push(vocab); // ans Ende anhängen
+  if (index >= vocabs.length) index = 0;
+  showFront = true;
+  updateCard();
+});
+
+// erste Karte anzeigen
+updateCard();
+</script>
+{% endblock %}
+

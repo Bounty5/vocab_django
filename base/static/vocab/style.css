@@ -1,0 +1,468 @@
+/* ================================
+   Global Styles
+================================ */
+body {
+    padding: 20px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#home_p {
+    text-align: center;
+    font-size: 18px;
+    color: #ccc;
+}
+
+/* ================================
+   Tabellen
+================================ */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #1e1e1e;
+}
+
+th, td {
+    padding: 16px;
+    text-align: center;
+}
+
+th {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #272727;
+}
+
+tr:nth-child(odd) {
+    background-color: #1e1e1e;
+}
+
+tr:hover {
+    background-color: #333333;
+}
+
+/* ================================
+   Navbar Styles
+================================ */
+.navbar {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid white;
+    z-index: 1000;
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+    transition: ease-in-out 150ms;
+}
+
+.nav-links a.active {
+    background-color: #00dc84ff;
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer; 
+}
+
+/* ================================
+   Buttons & Links
+================================ */
+.btn {
+    display: inline-block;
+    background-color: #00dc84ff;
+    color: #1e1e1e;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #00b366;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+}
+
+.btn-secondary:hover {
+    background-color: #3a3a3a;
+}
+
+/* ================================
+   Karten-Design (für Gruppen)
+================================ */
+.group-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.group-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.group-card:hover {
+    background-color: #222;
+    transform: scale(1.03);
+}
+
+.group-card h2 {
+    color: #00dc84ff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.group-card p {
+    color: #b0b0b0;
+    font-size: 14px;
+}
+
+/* ================================
+   Form Design
+================================ */
+.toggle_learned {
+    transform: scale(1.5);
+    text-align: center;
+    background-color: transparent;
+    padding: 0px;
+    margin: 2px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;          
+    transition: 0.2s;
+}
+
+
+.form {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    max-width: 500px;
+    margin: 20px auto;
+    color: #e0e0e0;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #272727;
+    color: #e0e0e0;
+    box-sizing: border-box;
+}
+
+.form button {
+    background-color: #00dc84ff;
+    color: #1e1e1e;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.form button:hover {
+    background-color: #00b366;
+}
+
+/* ================================
+   Gruppenseiten Layout
+================================ */
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto 30px auto;
+    max-width: 800px;
+}
+
+.group-header h1 {
+    margin: 0;
+}
+
+.group-header a {
+    text-decoration: none;
+}
+
+/* ================================
+    Responsive Design 
+================================ */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+
+    .navbar{
+        padding-top: 20px;
+    }
+
+    .navbar a:hover{
+    color: white;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #333;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    .group-container {
+        grid-template-columns: 1fr;
+    }
+
+    form {
+        padding: 15px;
+        margin: 15px;
+    }
+}
+
+.add {
+color:rgb(255, 255, 255);
+text-decoration: none;
+font-size: bold;
+font-size: 30px;
+border: white solid 2px;
+padding-left: 10px;
+padding-right: 10px;
+border-radius: 100px;
+transition: 0.2s;
+}
+
+.add:hover {
+color: #00dc84ff;
+border-color: #00dc84ff; 
+}
+
+a {
+text-decoration: none;
+color: white;
+transition: 0.2s;
+}
+
+a:hover {
+color: #00dc84ff;
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  column-gap: 20px;
+  text-align: center;  
+  list-style: none;
+  padding: 0;
+}
+
+
+.groups li {
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  transition: 0.2s;
+  padding: 5px;
+  width: 100%;
+}
+
+.groups li:hover {
+  background-color: #333;
+  transform: scale(1.02);
+}
+
+.groups a {
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 12px;
+}
+
+.groups a:hover {
+  color: #00dc84ff;
+}
+
+
+.navbar-logout-form button {
+    all: unset;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    margin: none;
+}
+
+.navbar-logout-form button:hover{
+    color: #00dc84ff;
+}
+
+/* ================================
+   Gruppenliste Styling (Update)
+================================ */
+.group-item {
+  position: relative;
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  margin: 12px auto;
+  padding: 0;
+  transition: 0.2s;
+}
+
+.group-item:hover {
+  background-color: #333;
+  transform: scale(1.02);
+}
+
+.group-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+}
+
+.group-content a {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.group-content a:hover {
+  color: #00dc84ff;
+}
+
+/* Delete-Button schön & dezent */
+.delete-form {
+  margin: 0;
+}
+
+.btn-delete {
+  background-color: transparent;
+  border: 2px solid #ff4c4c;
+  color: #ff4c4c;
+  font-size: 16px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-delete:hover {
+  background-color: #ff4c4c;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.centered-form {
+    max-width: 500px;       /* Breite des Formulars */
+    margin: 50px auto;      /* zentriert horizontal + Abstand oben */
+    padding: 20px;
+    text-align: center;     /* Text & Buttons zentrieren */
+    background-color: #1e1e1e; 
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.centered-form .btn {
+    padding: 14px 28px;   /* oben/unten 14px, links/rechts 28px */
+    margin: 10px 5px;     /* Abstand zwischen Buttons */
+}
+
+p {
+    text-align: center;
+}
+
+.highlight {
+    font-size: 24;
+    color: #00b366;
+}

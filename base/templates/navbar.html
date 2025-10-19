@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+        <ul class="nav-links">
+            <li>
+                <a href="{% url 'home' %}" class="{% if request.path == "home"%}active{%endif%}">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'show_vocab' %}" class="{% if request.path == '/show_vocab/'%}active{%endif%}">
+                    Alle Vokabeln
+                </a>
+            </li>
+            <li>
+                <a href="{% url "friends_list" %}">Freunde</a>
+            </li>
+
+</ul>
+    </nav>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

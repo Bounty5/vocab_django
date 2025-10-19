@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+<h1>Meine Vokabelgruppen</h1>
+<a href="{% url 'add_group' %}">➕ Neue Gruppe erstellen</a> <br>
+<ul class="groups">
+  {% for group in groups %}
+    <li class="group-item">
+      <div class="group-content">
+        <a href="{% url 'group_detail' group.id %}">{{ group.name }}</a>
+<form method="get" action="{% url 'delete_group' group.id %}" class="delete-form">
+  <button type="submit" class="btn-delete" aria-label="Gruppe löschen">✖</button>
+</form>
+
+      </div>
+    </li>
+  {% empty %}
+    <li>Keine Gruppen vorhanden.</li>
+  {% endfor %}
+</ul>
+
+
+        {% if request.user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}" class="navbar-logout-form">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% endif %}
+
+{% endblock %}
